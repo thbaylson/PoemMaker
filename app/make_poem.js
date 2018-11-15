@@ -6,6 +6,10 @@
  */
 
 var dataStructs = require('./data_structures.js');
+var exports = module.exprots = {};
+exports.makePoem = makePoem;
+exports.pickFirstWord = pickFirstWord;
+exports.pickNextWord = pickNextWord;
 
 /* Uses pickFirstWord and pickNextWord to build a poem-like string
  * @param args: The argument array passed to the program from the console
