@@ -1,7 +1,7 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project 3 for cs253. Unit Testing.",
   "main": "make_poem.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,5 +9,9 @@
     "rbbrrg": "nodejs make_poem.js rbbrrg_input_text.txt 1 2 3 [0.6,0.2,0.8,0.9,0.4,0.4] false"
   },
   "author": "Tyler Baylson",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
 }
