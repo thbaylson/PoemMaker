@@ -24,19 +24,16 @@ suite("Test suite for data_structures.js", function() {
         
         //console.log("BEFORE");
         dsFile = require("../data_structures.js");
-        inputFile = "red green yellow blue red red";
-        inputFilePath = "rgybrr_input.txt";
-        parsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
     });
 
     setup( function() {
 
         //console.log("BEFORE_EACH");
-        wordCount = ds.wordCount(parsedInput);
-        condWordCount = ds.CondWordCount(parsedInput);
-        wordFreq = ds.wordFreq(parsedInput);
-        condWordFreq = ds.condWordFreq(parsedInput);
+        inputFile = "red green yellow blue red red";
+        emptyInputFilePath = "";
+        nonEmptyInputFilePath = "rgybrr_input.txt";
+        parsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
     });
 
