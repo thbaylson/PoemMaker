@@ -18,6 +18,8 @@ exports.pickNextWord = pickNextWord;
  * @return poem: The constructed poem using the input file and given probabilities
  */
 function makePoem(args, wordData){
+
+    //** TODO: Wrap args around an object called "poemData"**/
     let stanzas = args[3];
     let linesPerStanza = args[4];
     let wordsPerLine = args[5];
@@ -34,6 +36,10 @@ function makePoem(args, wordData){
     while(stanzaNum < stanzas){
         while(lineNum < linesPerStanza){
             while(wordNum < wordsPerLine){
+                /** TODO: replace probabs[probabIndex++]
+                 *          with probabs[probabIndex++ % probabs.length()
+                 *      This allows us to generate more words without
+                 *      changing the size of the probability array.**/
                 next = pickNextWord(probabs[probabIndex++], current, wordData);
                 poem += next + " ";
                 current = next;
