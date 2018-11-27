@@ -9,23 +9,22 @@
 var assert = require("chai").assert;
 
 suite("Test Make Poem", function(){
-    /**These fields relate to modules used to test the make_poem.js module**/
     var data_structures = null;
-    var make_poem = null;
 
-    /**These fields relate to data needed for the data_structures object**/
-    var wordData = null;
     var words = null;
-    var countMap = null;
-    var freqMap = null;
-    var condFreqMap = null;
+	var countMap = null;
+	var freqMap = null;
+	var condFreqMap = null;
+	var wordData = null;
 
-    /**These fields relate to data needed for the make_poem.js module**/
-    var poemData = null;
-    var stanzas = null;
-    var linesPerStanza = null;
-    var wordsPerLine = null;
-    var probabilities = null;
+	var stanzas = null;
+	var linesPerStanza = null;
+	var wordsPerLine = null;
+	var probabilities = null;
+	var displayWordData = null;
+	var probabCnt = null;
+	var poemData = null;
+
 
     // BEFORE
     suiteSetup( function(){
@@ -36,20 +35,21 @@ suite("Test Make Poem", function(){
     // BEFORE EACH
     setup( function(){
         // wordData
-        words = {"red", "blue", "blue", "red", "green"};
+        words = ["red", "blue", "blue", "red", "red", "green"];
         countMap = data_structures.wordCount(words);
-        freqMap = data_structures.wordFreq(wordCount, 4);
-        condFreqMap = data_structres.condWordFreq(countMap, words);
+        freqMap = data_structures.wordFreq(countMap, 4);
+        condFreqMap = data_structures.condWordFreq(countMap, words);
         wordData = {"wordCount": countMap, "wordFreq" : freqMap, 
             "condWordFreq" : condFreqMap};
 
         // poemData
-        // TODO:
-        stanzas = "";
-        linesPerStanza = "";
-        wordsPerLine = "";
-        probabilities = "";
-        var probabCnt = 0;
+        stanzas = 1;
+        linesPerStanza = 2;
+        wordsPerLine = 3;
+        probabilities = "[0.6, 0.2, 0.8, 0.9, 0.4, 0.4]";
+		displayWordData = true;
+        probabCnt = 0;
+		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities];
     });
 
     // AFTER EACH
@@ -67,37 +67,36 @@ suite("Test Make Poem", function(){
 
     // AFTER
     suiteTeardown( function(){
-        data_structures = null;
-        make_poem = null;
-        wordData = null;
-        poemData = null;
+        //data_structures = null;
+        //make_poem = null;
+        //wordData = null;
+        //poemData = null;
     });
 
     // TESTS
     suite('Unit tests for the makePoem function', function(){
 
-        test(){
-            assert(makePoem(poemData, wordData)) === "red blue red",
-                    "Poem constructed shouble be: 'red blue red'.");
-        });
+        test("Test makePoem with input: poemData: " + JSON.stringify(poemData), function(){
+         assert(make_poem.makePoem(poemData, wordData) === "red blue red red green red",
+          "Something");
+        });// End test		
     });// End unitTests makePoem
 
     suite('Unit tests for the pickFirstWord function', function(){
 
-        test('Test pickFirstWord with data_structures?', function(){
-            assert(pickFirstWord(poemData['probabs'][0], 
-                                wordData['freqMap']) === "red",
-                                "First word picked is red");
-        });
+        test('Test pickFirstWord with data_structures', function(){
+         assert(make_poem.pickFirstWord(poemData, 
+          wordData['freqMap']) === "red", "First word picked should be red");
+        });// End test
     });// End unitTests pickFirstWord
 
     suite('Unit tests for the pickNextWord function', function(){
 
-        test('Test pickNextWord with?', function(){
-            assert(pickNextWord(poemData['probabs'][0],
-                                "blue", wordData) == "red",
-                                "Next word picked is red?? !Unchecked!");
-        });
+        test('Test pickNextWord with data_structures', function(){
+         assert(make_poem.pickNextWord(poemData,
+          "blue", wordData) == "red", "picknextword returns: " + 
+            make_poem.pickNextWord(poemData,"blue", wordData));
+        });// End test
     });// End unitTests pickNextWord
 
 });// End MakePoemTestSuite

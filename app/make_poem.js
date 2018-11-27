@@ -6,7 +6,7 @@
  */
 
 var dataStructs = require('./data_structures.js');
-var exports = module.exprots = {};
+var exports = module.exports = {};
 exports.makePoem = makePoem;
 exports.pickFirstWord = pickFirstWord;
 exports.pickNextWord = pickNextWord;
