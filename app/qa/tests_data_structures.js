@@ -29,8 +29,7 @@ suite("Test suite for data_structures.js", function() {
         //console.log("BEFORE");
         dsFile = require("../data_structures.js");
         rgybrrString = "\n\nred green \tyellow blue \nred red";
-        rgybrrFilePath = "rgybrr_input.txt";
-        fs.writeFileSync(rgybrrFilePath, rgybrrString);
+        rgybrrFilePath = require("../textSamples/rgybrr_input.txt");
         emptyFilePath = "";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
@@ -72,7 +71,6 @@ suite("Test suite for data_structures.js", function() {
 
     /**Below are the unit tests*/
     
-    /*
 
     suite("Unit tests for readFile", function() {
 
@@ -97,7 +95,6 @@ suite("Test suite for data_structures.js", function() {
 
     }); // End readFile unit tests
     
-    */
 
     suite("Unit tests for wordCount function", function() { 
         
