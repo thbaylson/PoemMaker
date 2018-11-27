@@ -4,7 +4,7 @@ Version: v3.0 (November 26, 2018)
 This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
-#USAGE
+###USAGE
 
     data_structures uses command line arguments to read files.
     Useage is: node data_structures.js <input_file>
@@ -27,27 +27,27 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
             BeowulfMore - Beowulf with more!
             BeowulfHalf - Beowulf, but with half the fun.
 
-#Output
+###Output
 
     -The output for data_structures.js is as follows, object is the 
      data structure that is printed:
     
-    wordCount is: <object>
-    wordFreq is: <object>
-    condWordCount is: <object>
-    condWordFreq is: <object>
+    -wordCount is: <object>
+    -wordFreq is: <object>
+    -condWordCount is: <object>
+    -condWordFreq is: <object>
 
     -The output for make_poem.js is a poem that has the user specified amount
      of stanzas, lines per stanza, and words per line. Therefore, output is
      different depending on what is input by the user.
 
-#Known Bugs
+###Known Bugs
     
-    Current known bags:
+    -Current known bags:
 
 
 
-    Bugs that have been squished (i.e. Fixed issues):
+    -Bugs that have been squished (i.e. Fixed issues):
       
       -condWordCount does not correctly count the number of words that follow.
       
