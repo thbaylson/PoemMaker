@@ -17,6 +17,11 @@ suite("Test suite for data_structures.js", function() {
     var emptyInputFilePath = null;
     var nonEmptyInputFilePath = null;
     var parsedInput = null;
+    var expectedParsedInput = null;
+    var expectedWC = null;
+    var expectedWF = null;
+    var expectedCWC = null;
+    var expectedCWF = null;
 
 
     suiteSetup( function() {
@@ -32,13 +37,31 @@ suite("Test suite for data_structures.js", function() {
 
     });
 
+    setup(function() {
 
+        expectedWC = {"red":3, "green":1, "yellow": 1, "blue":1};
+        expectedWF = {"red": (3/6), "green": (1/6), "yellow": (1/6),
+            "blue": (1/6)}
+        expectedCWC = {"red":{"green":1, "red":2}, 
+            "green":{"yellow":1}, "yellow":{"blue":1}, "blue":{"red":1}};
+        expectedCWF = {"red":{"green":(1/3), "red":(2/3)}, 
+            "green":{"yellow":(1/1)}, "yellow":{"blue":(1/1)}, 
+            "blue":{"red":(1/1)}};
+
+    });
+
+    teardown(function() {
+        expectedWC = null;
+        expectedWF = null;
+        expectedCWC = null;
+        expectedCWF = null;
+    });
 
     suiteTeardown( function() {
         
         //console.log("AFTER");
         dsFile = null;
-        ygybrrString = null;
+        rgybrrString = null;
         rgybrrFilePath = null;
         emptyFilePath = null;
         expectedParsedInput = null;
@@ -81,12 +104,8 @@ suite("Test suite for data_structures.js", function() {
         // Tests that wordCount returns the correct object
         test("Test wordCount with rgybrr", function(){
             
-            var expectedWC = {"red":3, "green":1, "yellow": 1, "blue":1};
-
             assert.deepStrictEqual(dsFile.wordCount(expectedParsedInput), 
                 expectedWC, "wordCount is not correct");
-
-            //assert.deepStrictEqual(dsFile.wordcount());
 
         });
     
@@ -96,32 +115,31 @@ suite("Test suite for data_structures.js", function() {
         
         test("Returns correct object with rgybrr", function(){
             
-            var expectedCWC = {"red":{"green":1, "red":2}, 
-                "green":{"yellow":1}, "yellow":{"blue":1}, "blue":{"red":1}};
-            /*
-            assert.deepStrictEqual(dsFile.condWordCount({"red":3, "green":1, 
-                "yellow": 1, "blue":1}, expectedParsedInput),
-                expectedCWC, "condWordCount is not correct");
-            */
+            assert.deepStrictEqual(dsFile.condWordCount(expectedWC, 
+                expectedParsedInput), expectedCWC, 
+                "condWordCount is not correct");
+
         });
 
     }); // End condWordCount unit tests
 
     suite("Unit tests for wordFreq function", function(){
 
-        test("string", function(){
-
-            //TODO finish
-
+        test("Returns correct object with rgybrr", function(){
+            
+            assert.deepStrictEqual(dsFile.wordFreq(expectedWC, 6), expectedWF,
+                "wordFreq is not correct");
         });
 
     }); // end wordFreq unit tests
 
     suite("Unit tests for condWordFreq function", function(){
 
-        test("string", function(){
+        test("Returns correct object with rgybrr", function(){
 
-            //TODO finish
+            assert.deepStrictEqual(dsFile.condWordFreq(
+                dsFile.condWordCount(expectedWC, expectedParsedInput)), 
+                expectedCWF, "condWordFreq is not correct");
 
         });
 
