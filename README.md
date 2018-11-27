@@ -5,6 +5,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
 #USAGE
+
     data_structures uses command line arguments to read files.
     Useage is: node data_structures.js <input_file>
 
@@ -27,6 +28,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
             BeowulfHalf - Beowulf, but with half the fun.
 
 #Output
+
     -The output for data_structures.js is as follows, object is the 
      data structure that is printed:
     
@@ -40,6 +42,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
      different depending on what is input by the user.
 
 #Known Bugs
+    
     Current known bags:
 
 
