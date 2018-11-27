@@ -76,36 +76,50 @@ function condWordCount(countMap, inputSeq){
     return condCount;
 }// end function condWordCount
 
+/**
+ * Determine the frequency that a word appears after a given word.
+ *
+ * @param {Object} input - The value returned from condWordCount.
+ * @return {String} condWordFreq - the conditional word frequency object as a
+ *                                 string.
+ */
+function condWordFreq(input) {
+    
+    var condWordFreq = input;
+    
+    for(var key in input) {
+        var word = input[key];
+        var count = sum(word);
+        
+        for(var follows in word) {
+
+            condWordFreq[key][follows] = word[follows] / count;
+         
+        }
+
+
+    }
+    
+    return condWordFreq;
+}
 
 /**
-* A function that returns the condWordCount object: an array with the format:
-* {<wordA>: {<wordB>:<frequency wordB immediately following wordA>}}.
-* @param {object} [countMap] The wordCount object.
-* @param {array} [inputSeq] The formatted array of words from the file.
-* @return {object} [condMap] The conditional word frequency map.
-*/
-function condWordFreq(countMap, inputSeq){
-    let condMap = {};
-    let tmpArray = [];
-    let keys = Object.keys(countMap);
-    for(let k = 0; k < keys.length; k++){
-        for(let i = 0; i < inputSeq.length; i++){
-			//This finds if the current input element is the one we're matching
-            if(keys[k] == inputSeq[i] && i + 1 < inputSeq.length){
-                tmpArray.push(inputSeq[i + 1]);
-            }// end if
-			
-            //This captures the desired wrap around effect
-            else if(k == keys.length - 1 && i == inputSeq.length - 1){
-                tmpArray.push(inputSeq[0]);
-            }// end else if
-        }// end inner for
-		condMap[keys[k]] = wordFreq(wordCount(tmpArray), tmpArray.length);
-        tmpArray = [];
-    }// end outer for
-    return condMap;
-}// end function condWordFreq
+ * Helper function for condWordFreq. It counts the amount of times a word
+ * follows another word.
+ *
+ * @param {object} obj - The object to count
+ * @return {number} count - the number of times a word follows another.
+ */
+function sum(obj) {
+    
+    var count = 0;
+    
+    for(var key in obj) {
+        count += obj[key];
+    }
 
+    return count;
+}
 
 /**
 * A helper function for formating how these objects should be represented as strings.
@@ -146,11 +160,11 @@ function getKeyValuePairs(obj){
 * @param {filename} [fileNameString] The desired file to be opened.
 * @return {array} [words] An array of all the words in the file.
 */
-function readFile(processArgs){
+function readFile(processargs){
     let result;
     let fs = require('fs');
-    if(processArgs.length >= 3){
-        let file = fs.readFileSync(processArgs[2], 'utf8');
+    if(processargs.length >= 3){
+        let file = fs.readFileSync(process.argv[2], 'utf8');
         let reg = /(?:[a-z]+)/g;
         result = file.match(reg);
     }// end if
@@ -168,7 +182,7 @@ function main(){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
 		condCountMap = condWordCount(countMap, words);
-		condFreqMap = condWordFreq(countMap, words);
+		condFreqMap = condWordFreq(condCountMap);
 
 		console.log("\nwordCount is " + getKeyValuePairs(countMap));
 		console.log("\nwordFreq is " + getKeyValuePairs(freqMap));
