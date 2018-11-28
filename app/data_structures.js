@@ -84,7 +84,6 @@ function condWordCount(countMap, inputSeq){
  *                                 string.
  */
 function condWordFreq(input) {
-    
     var condWordFreq = input;
     
     for(var key in input) {
@@ -93,15 +92,11 @@ function condWordFreq(input) {
         
         for(var follows in word) {
 
-            condWordFreq[key][follows] = word[follows] / count;
-         
-        }
-
-
-    }
-    
+            condWordFreq[key][follows] = word[follows] / count;         
+        }// end inner for
+    }// end outer for
     return condWordFreq;
-}
+}// end function condWordFreq
 
 /**
  * Helper function for condWordFreq. It counts the amount of times a word
@@ -160,11 +155,11 @@ function getKeyValuePairs(obj){
 * @param {filename} [fileNameString] The desired file to be opened.
 * @return {array} [words] An array of all the words in the file.
 */
-function readFile(processargs){
+function readFile(processArgs){
     let result;
     let fs = require('fs');
-    if(processargs.length >= 3){
-        let file = fs.readFileSync(process.argv[2], 'utf8');
+    if(processArgs.length >= 3){
+        let file = fs.readFileSync(processArgs[2], 'utf8');
         let reg = /(?:[a-z]+)/g;
         result = file.match(reg);
     }// end if

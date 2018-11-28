@@ -10,6 +10,7 @@ var exports = module.exports = {};
 exports.makePoem = makePoem;
 exports.pickFirstWord = pickFirstWord;
 exports.pickNextWord = pickNextWord;
+exports.main = main;
 
 /* Uses pickFirstWord and pickNextWord to build a poem-like string
  * @param args: The argument array passed to the program from the console
@@ -104,39 +105,43 @@ function pickNextWord(probab, currentWord, wordData){
 /**
  * See program description at top
  */
-function main(){
+function main(args){
     let dataStructs = require('./data_structures.js');
-    let args = process.argv;
+    //let args = process.argv;
     let words = dataStructs.readFile(args);
+    let output;
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);
         wordData['wordFreqs'] = dataStructs.wordFreq(wordData['countMap'], 
             words.length);
-        wordData['condWordFreq'] = dataStructs.condWordFreq(
+        wordData['condWordCount'] = dataStructs.condWordCount(
             wordData['countMap'], words);
+        wordData['condWordFreq'] = dataStructs.condWordFreq(
+            wordData['condWordCount']);
 
-        let poem = makePoem(args, wordData);
-        console.log(poem);
+        output = makePoem(args, wordData);
+        //console.log(poem);
         if(JSON.parse(args[7])){
-            console.log("wordCount is " + JSON.stringify(
-                wordData['countMap']));
-            console.log("\nwordFreq is " + JSON.stringify(
-                wordData['wordFreqs']));
-            console.log("\ncondWordCount is " + JSON.stringify(
-                dataStructs.condWordCount(wordData['countMap'], words)));
-            console.log("\ncondWordFreq is " + JSON.stringify(
-                wordData['condWordFreq']));
+            output += "\nwordCount is " + JSON.stringify(
+                wordData['countMap']);
+            output += "\nwordFreq is " + JSON.stringify(
+                wordData['wordFreqs']);
+            output += "\ncondWordCount is " + JSON.stringify(
+                wordData['condWordCount']);
+            output += "\ncondWordFreq is " + JSON.stringify(
+                wordData['condWordFreq']);
         }// End inner if
     }// End outer if
     else if(words == 'empty'){
-        console.log("\nInput can not be empty of only be whitespace");
+        output = "\nInput can not be empty of only be whitespace";
     }// End else if
     else{
-        console.log("\nUsage: nodejs make_poem.js <inputFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>");
+        output = "\nUsage: nodejs make_poem.js <inputFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>";
     }// End else
+    return output;
 }// End main()
 
 if(require.main == module){
-    main();
+    console.log(main(process.argv));
 }// End if

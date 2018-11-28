@@ -22,9 +22,11 @@ suite("Test Make Poem", function(){
 	var linesPerStanza = null;
 	var wordsPerLine = null;
 	var probabilities = null;
-	var displayWordData = null;
-	var probabCnt = null;
 	var poemData = null;
+
+    var validInput = null;
+    var invalidInput = null;
+    var emptyInput = null;
 
 
     // BEFORE ALL
@@ -32,7 +34,7 @@ suite("Test Make Poem", function(){
 		// wordData
         words = ["red", "blue", "blue", "red", "red", "green"];
         countMap = data_structures.wordCount(words);
-        freqMap = data_structures.wordFreq(countMap, 6);
+        freqMap = data_structures.wordFreq(countMap, words.length);
         condWordMap = data_structures.condWordCount(countMap, words);
         condFreqMap = data_structures.condWordFreq(condWordMap);
         wordData = {"wordCount": countMap, "wordFreqs" : freqMap, 
@@ -44,8 +46,13 @@ suite("Test Make Poem", function(){
         linesPerStanza = 2;
         wordsPerLine = 3;
         probabilities = "[0.6,0.2,0.8,0.9,0.4,0.4]";
-		displayWordData = true;
-		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities];
+		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
+
+        validInput = poemData;
+        invalidInput = [1, 1, "rbbrrg_input_text.txt", 2, 3, 5];
+        emptyInput = poemData;
+        validInput[2] = "rbbrrg_input_text.txt";
+        emptyInput[2] = "empty_input.txt";
     });
 
     // BEFORE EACH
@@ -74,31 +81,62 @@ suite("Test Make Poem", function(){
         probabilities = null;
         wordData = null;
         poemData = null;
+
+        validInput = null;
+        invalidInput = null;
+        emptyInput = null;
     });
 
     // TESTS
-    suite('Unit tests for the makePoem function', function(){
+    suite('Unit tests for the core functionalities of make_poem', function(){
 
         test("Test makePoem", function(){
          assert(make_poem.makePoem(poemData, wordData) === 
-          "\nred blue red \nred green red \n\n\n", "Fail");
+          "\nred blue red \nred green red \n\n\n", 
+          "makePoem should return: \nred blue red \nred green red \n\n\n");
         });// End test		
-    });// End unitTests makePoem
+   // });// End unitTests makePoem
 
-    suite('Unit tests for the pickFirstWord function', function(){
+   // suite('Unit tests for the pickFirstWord function', function(){
 
         test('Test pickFirstWord with data_structures', function(){
          assert(make_poem.pickFirstWord(0.6, 
-          wordData['wordFreqs']) === "red", "First word picked should be red");
+          wordData['wordFreqs']) === "red", 
+          "First word picked should be red.");
         });// End test
-    });// End unitTests pickFirstWord
+   // });// End unitTests pickFirstWord
 	
-    suite('Unit tests for the pickNextWord function', function(){
+   // suite('Unit tests for the pickNextWord function', function(){
 
         test('Test pickNextWord with data_structures', function(){
          assert(make_poem.pickNextWord(0.2,
           "red", wordData) == "blue", "picknextword returns: " + 
             make_poem.pickNextWord(0.2,"red", wordData));
         });// End test
-    });// End unitTests pickNextWord
+    });// End unitTests core functionality //pickNextWord
+
+    suite("Unit tests for the main function", function(){
+        
+        test("Test main() with valid inputs and displaying data_structures", function(){
+            assert(make_poem.main(validInput) === 
+            "\nred blue red \nred green red \n\n\n" +
+                "\nwordCount is " + JSON.stringify(wordData['wordCount']) +
+                "\nwordFreq is " + JSON.stringify(wordData['wordFreqs']) +
+                "\ncondWordCount is " + JSON.stringify(wordData['condWordCount']) +
+                "\ncondWordFreq is " + JSON.stringify(wordData['condWordFreq']),
+            "Program needs to output the correct poem, in the correct format, with the data_structures objects");
+        });// End test
+
+        test("Test main() with invalid inputs", function(){
+            assert(make_poem.main(invalidInput) === 
+            "\nUsage: nodejs make_poem.js <inputFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>",
+            "Program should halt if inputs are invalid");
+        });// End test
+
+        test("Test main() with an empty file", function(){
+            assert(make_poem.main(emptyInput) === 
+            "\nInput can not be empty of only be whitespace",
+            "Program should halt if the file is empty");
+        });// End test
+    });// End unitTEsts main
 });// End MakePoemTestSuite
