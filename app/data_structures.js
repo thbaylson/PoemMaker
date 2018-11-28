@@ -57,7 +57,7 @@ function wordFreq(countMap, totalWords){
 * @param {array} [inputSeq] The formatted array of words from the file.
 * @return {object} [condCount] The condWordCount object.
 */
-function condWordCount(countMap, inputSeq){
+function condWordCount(inputSeq){
     let condCount = {};
     for(let i = 0; i < inputSeq.length; i++){
         let current = inputSeq[i];
@@ -181,7 +181,7 @@ function main(inputArgs){
     if(words != 'empty' && args.length == 3){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
-		condCountMap = condWordCount(countMap, words);
+		condCountMap = condWordCount(words);
 		condFreqMap = condWordFreq(condCountMap);
 
 		console.log("\nwordCount is " + getKeyValuePairs(countMap));
