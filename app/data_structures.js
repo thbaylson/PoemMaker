@@ -160,14 +160,14 @@ function getKeyValuePairs(obj){
 * @param {filename} [fileNameString] The desired file to be opened.
 * @return {array} [words] An array of all the words in the file.
 */
-function readFile(processargs){
+function readFile(fileNameString){
     let result;
     let fs = require('fs');
-    if(processargs.length >= 3){
-        let file = fs.readFileSync(process.argv[2], 'utf8');
-        let reg = /(?:[a-z]+)/g;
-        result = file.match(reg);
-    }// end if
+    let file = fs.readFileSync(fileNameString, 'utf8');
+    let reg = /(?:[a-z]+)/g;
+   
+    result = file.match(reg);
+    
     return (result != null) ? result : 'empty';
 }// end function readFile
 
@@ -175,9 +175,9 @@ function readFile(processargs){
 /**
 * See program description at top.
 */
-function main(){
-    let args = process.argv;
-    let words = readFile(args);
+function main(inputArgs){
+    let args = inputArgs;
+    let words = readFile(args[2]);
     if(words != 'empty' && args.length == 3){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
@@ -199,5 +199,6 @@ function main(){
 
 
 if(require.main === module){
-    main();
+    var args = process.argv;
+    main(args);
 }// end if
