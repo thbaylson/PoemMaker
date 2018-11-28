@@ -183,8 +183,8 @@ function main(inputArgs){
 		freqMap = wordFreq(countMap, words.length);
 		condCountMap = condWordCount(words);
 		condFreqMap = condWordFreq(condCountMap);
-
-		console.log("\nwordCount is " + getKeyValuePairs(countMap));
+		
+        console.log("\nwordCount is " + getKeyValuePairs(countMap));
 		console.log("\nwordFreq is " + getKeyValuePairs(freqMap));
 		console.log("\ncondWordCount is " + getKeyValuePairs(condCountMap));
 		console.log("\ncondWordFreq is " + getKeyValuePairs(condFreqMap));
