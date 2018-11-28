@@ -19,7 +19,6 @@ exports.pickNextWord = pickNextWord;
  */
 function makePoem(args, wordData){
 
-    //** TODO: Wrap args around an object called "poemData"**/
     let stanzas = args[3];
     let linesPerStanza = args[4];
     let wordsPerLine = args[5];
