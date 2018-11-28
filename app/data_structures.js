@@ -59,6 +59,7 @@ function wordFreq(countMap, totalWords){
 */
 function condWordCount(inputSeq){
     let condCount = {};
+
     for(let i = 0; i < inputSeq.length; i++){
         let current = inputSeq[i];
         let next = inputSeq[(i + 1) % inputSeq.length];
@@ -73,6 +74,7 @@ function condWordCount(inputSeq){
             condCount[current][next] += 1;
         }// end else
     }// end for
+
     return condCount;
 }// end function condWordCount
 
@@ -85,7 +87,9 @@ function condWordCount(inputSeq){
  */
 function condWordFreq(input) {
     
-    var condWordFreq = input;
+    // This line creates a deep copy of the condWordCount so that
+    // it doesn't change the values in the original object 
+    var condWordFreq = JSON.parse(JSON.stringify(input));
     
     for(var key in input) {
         var word = input[key];
