@@ -12,12 +12,19 @@ var fs = require("fs");
 /**A test suite for testing the data_structures obejct**/
 suite("Test suite for data_structures.js", function() {
     
+    /**Test fixture for the data structures module, for the whole suite**/
     var dsFile = null;
-    var inputFile = null;
-    var emptyInputFilePath = null;
-    var nonEmptyInputFilePath = null;
+
+    /**Test fixtures created to mock input for data_structures**/
+    var rgybrrString = null;
+    var rgybrrFilePath = null;
+    var emptyFilePath = null;
     var parsedInput = null;
+    var emptyInput = null;
+    var whitespaceInput = null;
     var expectedParsedInput = null;
+
+    /**Test fixtures created to mock the objects created by data_structures**/
     var expectedWC = null;
     var expectedWF = null;
     var expectedCWC = null;
@@ -28,16 +35,22 @@ suite("Test suite for data_structures.js", function() {
         
         //console.log("BEFORE");
         dsFile = require("../data_structures.js");
-        rgybrrString = "\n\nred green \tyellow blue \nred red";
+        //rgybrrString = "\n\nred green \tyellow blue \nred red";
+        //rgybrrFilePath = "rgybrr_input.txt"
+        //fs.writeFileSync(rgybrrFilePath, rgybrrString);
         rgybrrFilePath = require("../textSamples/rgybrr_input.txt");
         emptyFilePath = "";
+        parsedInput = dsFile.readFile(rgybrrFilePath);
+        emptyInput = dsFile.readfile(emptyFilePath);
+        whitespaceInput = dsFile.readFile(" \n \t    \n  ");
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
 
-    });
+    }); //end suiteSetup
 
     setup(function() {
-
+        
+        //console.log("BEFORE_EACH");
         expectedWC = {"red":3, "green":1, "yellow": 1, "blue":1};
         expectedWF = {"red": (3/6), "green": (1/6), "yellow": (1/6),
             "blue": (1/6)}
@@ -47,14 +60,17 @@ suite("Test suite for data_structures.js", function() {
             "green":{"yellow":(1/1)}, "yellow":{"blue":(1/1)}, 
             "blue":{"red":(1/1)}};
 
-    });
+    }); //end setup
 
     teardown(function() {
+
+        //console.log("AFTER_EACH");
         expectedWC = null;
         expectedWF = null;
         expectedCWC = null;
         expectedCWF = null;
-    });
+
+    }); //end Teardown
 
     suiteTeardown( function() {
         
@@ -65,7 +81,7 @@ suite("Test suite for data_structures.js", function() {
         emptyFilePath = null;
         expectedParsedInput = null;
 
-    });
+    }); //end suiteTeardown
 
     
 
@@ -73,10 +89,8 @@ suite("Test suite for data_structures.js", function() {
     
 
     suite("Unit tests for readFile", function() {
-
-        var parsedInput = dsFile.readFile(rgybrrFilePath);
-        var emptyInput = dsFile.readfile(emptyFilePath);
-        var whitespaceInput = dsFile.readFile(" \n \t    \n  ");
+        
+        console.log(rgybrrFilePath);
 
         test("readFile function with correct input", function() {
         assert.deepStrictEquals(parsedInput, expectedParsedInput, "readFile" +
