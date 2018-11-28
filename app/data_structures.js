@@ -167,10 +167,19 @@ function getKeyValuePairs(obj){
 function readFile(fileNameString){
     let result;
     let fs = require('fs');
-    let file = fs.readFileSync(fileNameString, 'utf8');
+    let file;
+    try{
+        file = fs.readFileSync(fileNameString, 'utf-8');
+    } catch(err) {
+        return 'empty';
+    }
     let reg = /(?:[a-z]+)/g;
    
     result = file.match(reg);
+    
+    if(result[0] === "" || result.length == 0){
+        return 'empty';
+    }
     
     return (result != null) ? result : 'empty';
 }// end function readFile

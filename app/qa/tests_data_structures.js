@@ -41,8 +41,10 @@ suite("Test suite for data_structures.js", function() {
         //rgybrrFilePath = "../textSamples/rgybrr_input.txt";
         emptyFilePath = "";
         parsedInput = dsFile.readFile(rgybrrFilePath);
+        //This shows that the object exists when it is created
+        console.log("parsedInput: " + JSON.stringify(parsedInput));
         //emptyInput = dsFile.readfile(emptyFilePath);
-        //whitespaceInput = dsFile.readFile(" \n \t    \n  ");
+        whitespaceInput = "../textSamples/empty_input_text.txt";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
 
@@ -90,22 +92,27 @@ suite("Test suite for data_structures.js", function() {
 
     suite("Unit tests for readFile", function() {
         
-        console.log(rgybrrFilePath);
+        //console.log(rgybrrFilePath);
 
         test("readFile function with correct input", function() {
-        assert.deepStrictEquals(parsedInput, expectedParsedInput, "readFile" +
-            " does not return correct array.");
+        assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
+            expectedParsedInput, "readFile does not return correct array.");
         });
+        
+        
+
 
         test("readFile function with empty input", function() {
-            assert.deepStrictEquals(emptyInput, 'empty', "readFile does not" +
-                " return 'empty' when given an empty input");
+            assert.deepStrictEqual(dsFile.readFile(emptyFilePath), 
+                'empty', "readFile does not return 'empty' when given an" +
+                " empty input");
         });
 
         test("readFile function with only whitespace", function() {
-            assert.deepStrictEquals(whiteSpaceInput, 'empty', "readFile"     +
+            assert.deepStrictEqual(dsFile.readFile(whitespaceInput), 'empty', "readFile"     +
                 " does not return 'empty' for whitespace file");
         });
+
 
     }); // End readFile unit tests
     
@@ -126,9 +133,8 @@ suite("Test suite for data_structures.js", function() {
         
         test("Returns correct object with rgybrr", function(){
             
-            assert.deepStrictEqual(dsFile.condWordCount(expectedWC, 
-                expectedParsedInput), expectedCWC, 
-                "condWordCount is not correct");
+            assert.deepStrictEqual(dsFile.condWordCount(expectedParsedInput), 
+                expectedCWC, "condWordCount is not correct");
 
         });
 
@@ -149,7 +155,7 @@ suite("Test suite for data_structures.js", function() {
         test("Returns correct object with rgybrr", function(){
 
             assert.deepStrictEqual(dsFile.condWordFreq(
-                dsFile.condWordCount(expectedWC, expectedParsedInput)), 
+                dsFile.condWordCount(expectedParsedInput)), 
                 expectedCWF, "condWordFreq is not correct");
 
         });
