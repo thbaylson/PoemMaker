@@ -133,7 +133,7 @@ function main(args){
         }// End inner if
     }// End outer if
     else if(words == 'empty'){
-        output = "\nInput can not be empty of only be whitespace";
+        output = "\nInput can not be empty or only be whitespace";
     }// End else if
     else{
         output = "\nUsage: nodejs make_poem.js <inputFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>";
