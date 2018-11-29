@@ -152,7 +152,7 @@ function main(inputFile){
         return("\nUseage: nodejs data_structures.js <input.txt>");
     }
     let words = readFile(inputFile);
-    let stringToReturn = "";
+    stringToReturn = "\nInput can not be empty or only be whitespace.";
     if(words != 'empty'){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
@@ -164,17 +164,6 @@ function main(inputFile){
 		    "\ncondWordCount is " + JSON.stringify(condCountMap) +
 		    "\ncondWordFreq is " + JSON.stringify(condFreqMap);
 	}// end if
-	else if(words == 'empty'){
-		stringToReturn = "\nInput can not be empty or only be whitespace.";
-	}// end else if
-
-    /*
-
-    else{
-        stringToReturn = "\nUsage: nodejs data_structures.js <input.txt>";
-    }// end else
-
-    */
 
     return stringToReturn;
 }// end function main

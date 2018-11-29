@@ -164,6 +164,14 @@ suite("Test suite for data_structures.js", function() {
                 "\nInput can not be empty or only be whitespace.",
                 "main function does not return correctly with empty input");
         }); // end empty input main() test
+        
+        test("Returns useage statement with nonexistent input", function() {
+            assert.deepStrictEqual(dsFile.main(),
+                "\nUseage: nodejs data_structures.js <input.txt>",
+                "main function does not return correctly with empty input");
+        }); // end empty input main() test
+
+
 
     }); // end main() function unit tests
 
