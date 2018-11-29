@@ -76,7 +76,6 @@ function pickFirstWord(probab, wordFreqs){
     let first;
     for(let key in ordered){
         upper = lower + ordered[key];
-        upper = (cnt == ordered.length) ? Math.round(upper) : upper;
         if(lower <= probab && probab <= upper){
             first = key;
             break;
@@ -107,10 +106,8 @@ function pickNextWord(probab, currentWord, wordData){
  */
 function main(args){
     let dataStructs = require('./data_structures.js');
-    //let args = process.argv;
     let words = dataStructs.readFile(args[2]);
     let output;
-    console.log("Make_Poem, words & args.length: " + words + " & " + args.length);
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);
@@ -121,7 +118,6 @@ function main(args){
             wordData['condWordCount']);
 
         output = makePoem(args, wordData);
-        //console.log(poem);
         if(JSON.parse(args[7])){
             output += "\nwordCount is " + JSON.stringify(
                 wordData['countMap']);
@@ -141,7 +137,3 @@ function main(args){
     }// End else
     return output;
 }// End main()
-
-if(require.main == module){
-    console.log(main(process.argv));
-}// End if
