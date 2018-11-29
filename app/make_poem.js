@@ -79,7 +79,6 @@ function pickFirstWord(probab, wordFreqs){
     let first;
     for(let key in ordered){
         upper = lower + ordered[key];
-        upper = (cnt == ordered.length) ? Math.round(upper) : upper;
         if(lower <= probab && probab <= upper){
             first = key;
             break;
@@ -141,4 +140,3 @@ function main(args){
     }// End else
     return output;
 }// End main()
-

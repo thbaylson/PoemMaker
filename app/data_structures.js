@@ -1,8 +1,8 @@
-/*@author Evert Ball and  Tyler Baylson
-* @version 11/28/18
+/*
+* @author Evert Ball and Tyler Baylson
+* @version 11/29/18
 *
 * This file is driven by dsDriver.js
-*
 * For a given input file, this program will generate and print objects 
 * representing the word count, word frequency, conditional word count, 
 * and conditional word frequency.
@@ -167,4 +167,7 @@ function main(inputFile){
 
     return stringToReturn;
 }// end function main
+<<<<<<< HEAD
 
+=======
+>>>>>>> eef7b569052f763bd742265ddf6878ec87b11c3e
