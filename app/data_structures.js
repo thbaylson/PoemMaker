@@ -1,5 +1,4 @@
-/**
-* @author Tyler Baylson
+/*@author Tyler Baylson
 * @version 09/28/18
 * For a given input file, this program will generate and print objects 
 * representing the word count, word frequency, conditional word count, 
@@ -12,6 +11,7 @@ exports.wordFreq = wordFreq;
 exports.condWordCount = condWordCount;
 exports.condWordFreq = condWordFreq;
 exports.readFile = readFile;
+exports.main = main;
 
 /**
 * A function to build and return the wordCount object: an array of <word>:<# of occurrences> pairs.
@@ -129,8 +129,13 @@ function sum(obj) {
 */
 function readFile(fileNameString){
     let fs = require('fs');
-    let file = fs.readFileSync(fileNameString, 'utf-8');
-    console.log("Data_Structures, file: " + file);
+    try{
+        file = fs.readFileSync(fileNameString, 'utf-8');
+    } catch(err) {
+        if(err.code === "ENOENT") {
+            return 'empty';
+        }
+    }
     let reg = /(?:[a-z]+)/g;
     let result = file.match(reg);
     console.log("Data_Structures, result: " + result);
@@ -142,6 +147,10 @@ function readFile(fileNameString){
 * See program description at top.
 */
 function main(inputFile){
+    
+    if(typeof(inputFile) === "undefined") {
+        return("\nUseage: nodejs data_structures.js <input.txt>");
+    }
     let words = readFile(inputFile);
     let stringToReturn = "";
     if(words != 'empty'){
@@ -156,16 +165,22 @@ function main(inputFile){
 		    "\ncondWordFreq is " + JSON.stringify(condFreqMap);
 	}// end if
 	else if(words == 'empty'){
-		return "\nInput can not be empty or only be whitespace.";
+		stringToReturn = "\nInput can not be empty or only be whitespace.";
 	}// end else if
+
+    /*
+
     else{
-        return "\nUsage: nodejs data_structures.js <input.txt>";
+        stringToReturn = "\nUsage: nodejs data_structures.js <input.txt>";
     }// end else
+
+    */
+
     return stringToReturn;
 }// end function main
 
 
 if(require.main === module){
     var args = process.argv;
-    console.log(main(args));
+    console.log(main(args[2]));
 }// end if

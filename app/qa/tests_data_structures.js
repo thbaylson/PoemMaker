@@ -40,7 +40,7 @@ suite("Test suite for data_structures.js", function() {
         fs.writeFileSync(rgybrrFilePath, rgybrrString);
         emptyFilePath = "";
         parsedInput = dsFile.readFile(rgybrrFilePath);
-        whitespaceInput = "../textSamples/empty_input_text.txt";
+        whitespaceInput = "textSamples/empty_input_text.txt";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
 
@@ -57,7 +57,10 @@ suite("Test suite for data_structures.js", function() {
         expectedCWF = {"red":{"green":(1/3), "red":(2/3)}, 
             "green":{"yellow":(1/1)}, "yellow":{"blue":(1/1)}, 
             "blue":{"red":(1/1)}};
-        //expectedMainString = 
+        expectedMainString = "\nwordCount is " + JSON.stringify(expectedWC) +
+            "\nwordFreq is " + JSON.stringify(expectedWF) +
+            "\ncondWordCount is " + JSON.stringify(expectedCWC) + 
+            "\ncondWordFreq is " + JSON.stringify(expectedCWF);
     }); //end setup
 
     teardown(function() {
@@ -91,14 +94,8 @@ suite("Test suite for data_structures.js", function() {
         //console.log(rgybrrFilePath);
 
         test("readFile function with correct input", function() {
-        assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
-            expectedParsedInput, "readFile does not return correct array.");
-        });
-
-        test("readFile function with empty input", function() {
-            assert.deepStrictEqual(dsFile.readFile(emptyFilePath), 
-                'empty', "readFile does not return 'empty' when given an" +
-                " empty input");
+            assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
+                expectedParsedInput, "readFile does not return correct array.");
         });
 
         test("readFile function with only whitespace", function() {
@@ -155,24 +152,19 @@ suite("Test suite for data_structures.js", function() {
 
     }); // end condWordFreq unit tests
 
-    suite("Unit tests for the getKeyValuePairs function", function(){
-
-        test("Returns the correctly formated string of rgybrr", function(){
-
-            assert.deepStrictEqual(dsFile.getKeyValuePairs(expectedWC), 
-                JSON.stringify(expectedWC), "getKeyValuePairs is not correct");
-
-        });
-    }); // end getKeyValuePairs unit tests
-
-
     suite("Unit tests for the main function", function() {
+        
         test("Returns correct string with rgybrr", function(){
-            /*
-           assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
+            assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
                 expectedMainString, "main function is incorrect");
-           */
-        });
-    }); // end main unit tests
+        }); // end correct input test
+
+        test("Returns correct string with empty input", function() {
+            assert.deepStrictEqual(dsFile.main(emptyFilePath),
+                "\nInput can not be empty or only be whitespace.",
+                "main function does not return correctly with empty input");
+        }); // end empty input main() test
+
+    }); // end main() function unit tests
 
 }); // End data_structures.js testing suite
