@@ -186,27 +186,29 @@ function readFile(fileNameString){
 function main(inputArgs){
     let args = inputArgs;
     let words = readFile(args[2]);
+    let stringToReturn = "";
     if(words != 'empty' && args.length == 3){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
 		condCountMap = condWordCount(words);
 		condFreqMap = condWordFreq(condCountMap);
 		
-        console.log("\nwordCount is " + getKeyValuePairs(countMap));
-		console.log("\nwordFreq is " + getKeyValuePairs(freqMap));
-		console.log("\ncondWordCount is " + getKeyValuePairs(condCountMap));
-		console.log("\ncondWordFreq is " + getKeyValuePairs(condFreqMap));
+        stringToReturn = "\nwordCount is " + getKeyValuePairs(countMap) +
+            "\nwordFreq is " + getKeyValuePairs(freqMap) +
+		    "\ncondWordCount is " + getKeyValuePairs(condCountMap) +
+		    "\ncondWordFreq is " + getKeyValuePairs(condFreqMap);
 	}// end if
 	else if(words == 'empty'){
-		console.log("\nInput can not be empty or only be whitespace.");
+		return "\nInput can not be empty or only be whitespace.";
 	}// end else if
     else{
-        console.log("\nUsage: nodejs data_structures.js <input.txt>");
+        return "\nUsage: nodejs data_structures.js <input.txt>";
     }// end else
+    return stringToReturn;
 }// end function main
 
 
 if(require.main === module){
     var args = process.argv;
-    main(args);
+    console.log(main(args));
 }// end if

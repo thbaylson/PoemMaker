@@ -162,4 +162,10 @@ suite("Test suite for data_structures.js", function() {
 
     }); // end condWordFreq unit tests
 
+    suite("Unit tests for the main function", function() {
+        test("Does thing", function(){
+            
+        });
+    }); // end main unit tests
+
 }); // End data_structures.js testing suite
