@@ -108,15 +108,14 @@ function pickNextWord(probab, currentWord, wordData){
 function main(args){
     let dataStructs = require('./data_structures.js');
     //let args = process.argv;
-    let words = dataStructs.readFile(args);
+    let words = dataStructs.readFile(args[2]);
     let output;
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);
         wordData['wordFreqs'] = dataStructs.wordFreq(wordData['countMap'], 
             words.length);
-        wordData['condWordCount'] = dataStructs.condWordCount(
-            wordData['countMap'], words);
+        wordData['condWordCount'] = dataStructs.condWordCount(words);
         wordData['condWordFreq'] = dataStructs.condWordFreq(
             wordData['condWordCount']);
 

@@ -12,6 +12,7 @@ exports.wordFreq = wordFreq;
 exports.condWordCount = condWordCount;
 exports.condWordFreq = condWordFreq;
 exports.readFile = readFile;
+exports.getKeyValuePairs = getKeyValuePairs;
 
 /**
 * A function to build and return the wordCount object: an array of <word>:<# of occurrences> pairs.

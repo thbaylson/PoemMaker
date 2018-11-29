@@ -40,8 +40,6 @@ suite("Test suite for data_structures.js", function() {
         fs.writeFileSync(rgybrrFilePath, rgybrrString);
         emptyFilePath = "";
         parsedInput = dsFile.readFile(rgybrrFilePath);
-        //This shows that the object exists when it is created
-        console.log("parsedInput: " + JSON.stringify(parsedInput));
         whitespaceInput = "../textSamples/empty_input_text.txt";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
@@ -156,6 +154,17 @@ suite("Test suite for data_structures.js", function() {
         });
 
     }); // end condWordFreq unit tests
+
+    suite("Unit tests for the getKeyValuePairs function", function(){
+
+        test("Returns the correctly formated string of rgybrr", function(){
+
+            assert.deepStrictEqual(dsFile.getKeyValuePairs(expectedWC), 
+                JSON.stringify(expectedWC), "getKeyValuePairs is not correct");
+
+        });
+    }); // end getKeyValuePairs unit tests
+
 
     suite("Unit tests for the main function", function() {
         test("Returns correct string with rgybrr", function(){
