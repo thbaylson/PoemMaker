@@ -12,7 +12,6 @@ exports.wordFreq = wordFreq;
 exports.condWordCount = condWordCount;
 exports.condWordFreq = condWordFreq;
 exports.readFile = readFile;
-exports.getKeyValuePairs = getKeyValuePairs;
 
 /**
 * A function to build and return the wordCount object: an array of <word>:<# of occurrences> pairs.
@@ -121,38 +120,6 @@ function sum(obj) {
     return count;
 }
 
-/**
-* A helper function for formating how these objects should be represented as strings.
-* @param {object} [obj] One of the four data structures defined above.
-* @return {string} [result] The formatted string of the data structure.
-*/
-function getKeyValuePairs(obj){
-	let tmpStr;
-    let result = "{";
-    if(typeof obj == 'object'){
-        let keys = Object.keys(obj);
-        let values = Object.values(obj);
-        for(let x = 0; x < keys.length; x++){
-            let value;
-            if(typeof values[x] == 'object'){
-                value = getKeyValuePairs(values[x]);
-				result += "'" + keys[x] + "'" + ": " + value + ",\n ";
-				tmpStr = result.substring(0, result.length - 3);
-            }// end inner if
-            else{
-                value = values[x];
-				result += "'" + keys[x] + "'" + ": " + value + ", ";
-				tmpStr = result.substring(0, result.length - 2);
-            }// end inner else
-        }// end for       
-        result = tmpStr + "}";
-    }// end outer if
-    else{
-       result = "\nParameter Error: getKeyValuePairs was not passed an object parameter";
-    }// end outer else
-    return result;
-}// end function getKeyValuePairs
-
 
 /**
 * A helper function for taking in the single given file and formats
@@ -192,11 +159,11 @@ function main(inputFile){
 		freqMap = wordFreq(countMap, words.length);
 		condCountMap = condWordCount(words);
 		condFreqMap = condWordFreq(condCountMap);
-		
-        stringToReturn = "\nwordCount is " + getKeyValuePairs(countMap) +
-            "\nwordFreq is " + getKeyValuePairs(freqMap) +
-		    "\ncondWordCount is " + getKeyValuePairs(condCountMap) +
-		    "\ncondWordFreq is " + getKeyValuePairs(condFreqMap);
+        
+        stringToReturn = "\nwordCount is " + JSON.stringify(countMap) +
+            "\nwordFreq is " + JSON.stringify(freqMap) +
+		    "\ncondWordCount is " + JSON.stringify(condCountMap) +
+		    "\ncondWordFreq is " + JSON.stringify(condFreqMap);
 	}// end if
 	else if(words == 'empty'){
 		return "\nInput can not be empty or only be whitespace.";
