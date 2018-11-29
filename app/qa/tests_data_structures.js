@@ -40,7 +40,7 @@ suite("Test suite for data_structures.js", function() {
         fs.writeFileSync(rgybrrFilePath, rgybrrString);
         emptyFilePath = "";
         parsedInput = dsFile.readFile(rgybrrFilePath);
-        whitespaceInput = "../textSamples/empty_input_text.txt";
+        whitespaceInput = "textSamples/empty_input_text.txt";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
 
@@ -94,14 +94,8 @@ suite("Test suite for data_structures.js", function() {
         //console.log(rgybrrFilePath);
 
         test("readFile function with correct input", function() {
-        assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
-            expectedParsedInput, "readFile does not return correct array.");
-        });
-
-        test("readFile function with empty input", function() {
-            assert.deepStrictEqual(dsFile.readFile(emptyFilePath), 
-                'empty', "readFile does not return 'empty' when given an" +
-                " empty input");
+            assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
+                expectedParsedInput, "readFile does not return correct array.");
         });
 
         test("readFile function with only whitespace", function() {

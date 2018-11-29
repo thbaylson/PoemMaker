@@ -51,7 +51,7 @@ suite("Test Make Poem", function(){
         validInput = poemData;
         invalidInput = [1, 1, "../textSamples/rbbrrg_input_text.txt", 2, 3, 5];
         emptyInput = poemData;
-        validInput[2] = "../textSamples/rbbrrg_input_text.txt";
+        validInput[2] = "../rbbrrg_input_text.txt";
         emptyInput[2] = "../textSamples/empty_input.text.txt";
     });
 
