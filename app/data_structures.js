@@ -128,21 +128,18 @@ function sum(obj) {
 * @return {array} [words] An array of all the words in the file.
 */
 function readFile(fileNameString){
-    let result;
+    
     let fs = require('fs');
     let file;
     try{
-        file = fs.readFileSync(fileNameString, 'utf-8');
+        file = fs.readFileSync(fileNameString[2], 'utf-8');
     } catch(err) {
         return 'empty';
     }
     let reg = /(?:[a-z]+)/g;
    
-    result = file.match(reg);
+    let result = file.match(reg);
     
-    if(result[0] === "" || result.length == 0){
-        return 'empty';
-    }
     
     return (result != null) ? result : 'empty';
 }// end function readFile
@@ -176,7 +173,6 @@ function main(inputFile){
 
 
 if(require.main === module){
-    // arg2 is the input file
-    var arg2 = process.argv[2];
-    console.log(main(arg2));
+    var args = process.argv;
+    console.log(main(args));
 }// end if

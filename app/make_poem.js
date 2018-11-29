@@ -108,7 +108,7 @@ function pickNextWord(probab, currentWord, wordData){
 function main(args){
     let dataStructs = require('./data_structures.js');
     //let args = process.argv;
-    let words = dataStructs.readFile(args[2]);
+    let words = dataStructs.readFile(args);
     let output;
     if(words != 'empty' && args.length == 8){
         let wordData = {};
