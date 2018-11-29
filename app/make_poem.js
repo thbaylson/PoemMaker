@@ -110,6 +110,7 @@ function main(args){
     //let args = process.argv;
     let words = dataStructs.readFile(args);
     let output;
+    console.log("main(): words: " + words);
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);

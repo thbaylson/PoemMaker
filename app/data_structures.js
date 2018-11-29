@@ -131,11 +131,11 @@ function readFile(fileNameString){
     
     let fs = require('fs');
     let file;
-    try{
+    //try{
         file = fs.readFileSync(fileNameString[2], 'utf-8');
-    } catch(err) {
-        return 'empty';
-    }
+    //} catch(err) {
+    //    return 'empty';
+    //}
     let reg = /(?:[a-z]+)/g;
    
     let result = file.match(reg);

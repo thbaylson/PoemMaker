@@ -49,10 +49,11 @@ suite("Test Make Poem", function(){
 		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
 
         validInput = poemData;
-        invalidInput = [1, 1, "../textSamples/rbbrrg_input_text.txt", 2, 3, 5];
+        invalidInput = [1, 1, "textSamples/rbbrrg_input_text.txt", 2, 3, 5];
         emptyInput = poemData;
-        validInput[2] = "../textSamples/rbbrrg_input_text.txt";
-        emptyInput[2] = "../textSamples/empty_input.text.txt";
+        validInput[2] = "textSamples/rbbrrg_input_text.txt";
+        emptyInput[2] = "textSamples/empty_input_text.txt";
+
     });
 
     // BEFORE EACH
@@ -95,19 +96,13 @@ suite("Test Make Poem", function(){
           "\nred blue red \nred green red \n\n\n", 
           "makePoem should return: \nred blue red \nred green red \n\n\n");
         });// End test		
-   // });// End unitTests makePoem
-
-   // suite('Unit tests for the pickFirstWord function', function(){
 
         test('Test pickFirstWord with data_structures', function(){
          assert.deepStrictEqual(make_poem.pickFirstWord(0.6, 
           wordData['wordFreqs']),"red", 
           "First word picked should be red.");
         });// End test
-   // });// End unitTests pickFirstWord
 	
-   // suite('Unit tests for the pickNextWord function', function(){
-
         test('Test pickNextWord with data_structures', function(){
          assert.deepStrictEqual(make_poem.pickNextWord(0.2,
           "red", wordData),"blue", "picknextword returns: " + 
