@@ -57,8 +57,9 @@ function wordFreq(countMap, totalWords){
 * @param {array} [inputSeq] The formatted array of words from the file.
 * @return {object} [condCount] The condWordCount object.
 */
-function condWordCount(countMap, inputSeq){
+function condWordCount(inputSeq){
     let condCount = {};
+
     for(let i = 0; i < inputSeq.length; i++){
         let current = inputSeq[i];
         let next = inputSeq[(i + 1) % inputSeq.length];
@@ -73,6 +74,7 @@ function condWordCount(countMap, inputSeq){
             condCount[current][next] += 1;
         }// end else
     }// end for
+
     return condCount;
 }// end function condWordCount
 
@@ -84,7 +86,9 @@ function condWordCount(countMap, inputSeq){
  *                                 string.
  */
 function condWordFreq(input) {
-    var condWordFreq = input;
+    // This line creates a deep copy of the condWordCount so that
+    // it doesn't change the values in the original object 
+    var condWordFreq = JSON.parse(JSON.stringify(input));
     
     for(var key in input) {
         var word = input[key];
@@ -155,14 +159,23 @@ function getKeyValuePairs(obj){
 * @param {filename} [fileNameString] The desired file to be opened.
 * @return {array} [words] An array of all the words in the file.
 */
-function readFile(processArgs){
+function readFile(fileNameString){
     let result;
     let fs = require('fs');
-    if(processArgs.length >= 3){
-        let file = fs.readFileSync(processArgs[2], 'utf8');
-        let reg = /(?:[a-z]+)/g;
-        result = file.match(reg);
-    }// end if
+    let file;
+    try{
+        file = fs.readFileSync(fileNameString, 'utf-8');
+    } catch(err) {
+        return 'empty';
+    }
+    let reg = /(?:[a-z]+)/g;
+   
+    result = file.match(reg);
+    
+    if(result[0] === "" || result.length == 0){
+        return 'empty';
+    }
+    
     return (result != null) ? result : 'empty';
 }// end function readFile
 
@@ -170,16 +183,16 @@ function readFile(processArgs){
 /**
 * See program description at top.
 */
-function main(){
-    let args = process.argv;
-    let words = readFile(args);
+function main(inputArgs){
+    let args = inputArgs;
+    let words = readFile(args[2]);
     if(words != 'empty' && args.length == 3){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
-		condCountMap = condWordCount(countMap, words);
+		condCountMap = condWordCount(words);
 		condFreqMap = condWordFreq(condCountMap);
-
-		console.log("\nwordCount is " + getKeyValuePairs(countMap));
+		
+        console.log("\nwordCount is " + getKeyValuePairs(countMap));
 		console.log("\nwordFreq is " + getKeyValuePairs(freqMap));
 		console.log("\ncondWordCount is " + getKeyValuePairs(condCountMap));
 		console.log("\ncondWordFreq is " + getKeyValuePairs(condFreqMap));
@@ -194,5 +207,6 @@ function main(){
 
 
 if(require.main === module){
-    main();
+    var args = process.argv;
+    main(args);
 }// end if
