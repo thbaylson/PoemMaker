@@ -25,6 +25,7 @@ suite("Test Make Poem", function(){
 	var poemData = null;
 
     var validInput = null;
+	var validDontPrint = null;
     var invalidInput = null;
     var emptyInput = null;
 
@@ -48,6 +49,8 @@ suite("Test Make Poem", function(){
 		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
 
         validInput = [1, 1, "textSamples/rbbrrg_input_text.txt", stanzas, linesPerStanza, wordsPerLine, probabilities, true];
+		validDontPrint = validInput;
+		validDontPrint[7] = false;
 
         emptyInput = poemData;
         emptyInput[2] = "textSamples/empty_input_text.txt";
@@ -83,6 +86,7 @@ suite("Test Make Poem", function(){
         poemData = null;
 
         validInput = null;
+		validDontPrint = null;
         invalidInput = null;
         emptyInput = null;
     });
@@ -119,6 +123,12 @@ suite("Test Make Poem", function(){
                 "\ncondWordCount is " + JSON.stringify(wordData['condWordCount']) +
                 "\ncondWordFreq is " + JSON.stringify(wordData['condWordFreq']),
             "Program needs to output the correct poem, in the correct format, with the data_structures objects");
+        });// End test
+		
+		test("Test main() with valid inputs and not displaying data_structures", function(){
+            assert.deepStrictEqual(make_poem.main(validDontPrint),
+            "\nred blue red \nred green red \n\n\n",
+            "Program needs to output the correct poem, in the correct format");
         });// End test
 
         test("Test main() with invalid inputs", function(){
