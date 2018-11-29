@@ -155,24 +155,16 @@ suite("Test suite for data_structures.js", function() {
 
     }); // end condWordFreq unit tests
 
-    suite("Unit tests for the getKeyValuePairs function", function(){
-
-        test("Returns the correctly formated string of rgybrr", function(){
-
-            assert.deepStrictEqual(dsFile.getKeyValuePairs(expectedWC), 
-                JSON.stringify(expectedWC), "getKeyValuePairs is not correct");
-
-        });
-    }); // end getKeyValuePairs unit tests
-
-
+/*
     suite("Unit tests for the main function", function() {
         test("Returns correct string with rgybrr", function(){
-            /*
-           assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
-                expectedMainString, "main function is incorrect");
-           */
+            
+          // assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
+          //      expectedMainString, "main function is incorrect");
+           
         });
     }); // end main unit tests
+
+*/
 
 }); // End data_structures.js testing suite

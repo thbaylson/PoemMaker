@@ -1,5 +1,4 @@
-/**
-* @author Tyler Baylson
+/*@author Tyler Baylson
 * @version 09/28/18
 * For a given input file, this program will generate and print objects 
 * representing the word count, word frequency, conditional word count, 
@@ -163,10 +162,10 @@ function main(inputFile){
 		    "\ncondWordFreq is " + JSON.stringify(condFreqMap);
 	}// end if
 	else if(words == 'empty'){
-		return "\nInput can not be empty or only be whitespace.";
+		stringToReturn = "\nInput can not be empty or only be whitespace.";
 	}// end else if
     else{
-        return "\nUsage: nodejs data_structures.js <input.txt>";
+        stringToReturn = "\nUsage: nodejs data_structures.js <input.txt>";
     }// end else
     return stringToReturn;
 }// end function main
@@ -174,5 +173,5 @@ function main(inputFile){
 
 if(require.main === module){
     var args = process.argv;
-    console.log(main(args));
+    console.log(main(args[2]));
 }// end if
