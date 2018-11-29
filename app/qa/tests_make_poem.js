@@ -49,8 +49,8 @@ suite("Test Make Poem", function(){
 		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
 
         validInput = [1, 1, "textSamples/rbbrrg_input_text.txt", stanzas, linesPerStanza, wordsPerLine, probabilities, true];
-		validDontPrint = validInput;
-		validDontPrint[7] = false;
+		validDontPrint = [1, 1, "textSamples/rbbrrg_input_text.txt", stanzas, linesPerStanza, wordsPerLine, probabilities, false];
+
 
         emptyInput = poemData;
         emptyInput[2] = "textSamples/empty_input_text.txt";
