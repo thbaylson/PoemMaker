@@ -132,7 +132,7 @@ function readFile(fileNameString){
     let fs = require('fs');
     let file;
     try{
-        file = fs.readFileSync(fileNameString[2], 'utf-8');
+        file = fs.readFileSync(fileNameString, 'utf-8');
     } catch(err) {
         return 'empty';
     }
