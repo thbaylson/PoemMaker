@@ -57,7 +57,10 @@ suite("Test suite for data_structures.js", function() {
         expectedCWF = {"red":{"green":(1/3), "red":(2/3)}, 
             "green":{"yellow":(1/1)}, "yellow":{"blue":(1/1)}, 
             "blue":{"red":(1/1)}};
-        //expectedMainString = 
+        expectedMainString = "\nwordCount is " + JSON.stringify(expectedWC) +
+            "\nwordFreq is " + JSON.stringify(expectedWF) +
+            "\ncondWordCount is " + JSON.stringify(expectedCWC) + 
+            "\ncondWordFreq is " + JSON.stringify(expectedCWF);
     }); //end setup
 
     teardown(function() {
@@ -155,16 +158,13 @@ suite("Test suite for data_structures.js", function() {
 
     }); // end condWordFreq unit tests
 
-/*
     suite("Unit tests for the main function", function() {
         test("Returns correct string with rgybrr", function(){
             
-          // assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
-          //      expectedMainString, "main function is incorrect");
+            assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
+                expectedMainString, "main function is incorrect");
            
         });
     }); // end main unit tests
-
-*/
 
 }); // End data_structures.js testing suite
