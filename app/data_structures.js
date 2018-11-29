@@ -135,9 +135,7 @@ function readFile(fileNameString){
     try{
         file = fs.readFileSync(fileNameString, 'utf-8');
     } catch(err) {
-        if(err.code === "ENOENT") {
-            return 'empty';
-        }
+        return 'empty';
     }
     let reg = /(?:[a-z]+)/g;
     let result = file.match(reg);
