@@ -159,12 +159,18 @@ suite("Test suite for data_structures.js", function() {
     }); // end condWordFreq unit tests
 
     suite("Unit tests for the main function", function() {
+        
         test("Returns correct string with rgybrr", function(){
-            
             assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
                 expectedMainString, "main function is incorrect");
-           
-        });
-    }); // end main unit tests
+        }); // end correct input test
+
+        test("Returns correct string with empty input", function() {
+            assert.deepStrictEqual(dsFile.main(emptyFilePath),
+                "\nInput can not be empty or only be whitespace.",
+                "main function does not return correctly with empty input");
+        }); // end empty input main() test
+
+    }); // end main() function unit tests
 
 }); // End data_structures.js testing suite

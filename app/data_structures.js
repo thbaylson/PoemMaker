@@ -130,12 +130,7 @@ function sum(obj) {
 function readFile(fileNameString){
     
     let fs = require('fs');
-    let file;
-    try{
-        file = fs.readFileSync(fileNameString, 'utf-8');
-    } catch(err) {
-        return 'empty';
-    }
+    let file = fs.readFileSync(fileNameString, 'utf-8');
     let reg = /(?:[a-z]+)/g;
    
     let result = file.match(reg);
