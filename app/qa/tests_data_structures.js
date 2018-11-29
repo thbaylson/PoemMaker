@@ -38,12 +38,10 @@ suite("Test suite for data_structures.js", function() {
         rgybrrString = "\n\nred green \tyellow blue \nred red";
         rgybrrFilePath = "rgybrr_input.txt"
         fs.writeFileSync(rgybrrFilePath, rgybrrString);
-        //rgybrrFilePath = "../textSamples/rgybrr_input.txt";
         emptyFilePath = "";
         parsedInput = dsFile.readFile(rgybrrFilePath);
         //This shows that the object exists when it is created
         console.log("parsedInput: " + JSON.stringify(parsedInput));
-        //emptyInput = dsFile.readfile(emptyFilePath);
         whitespaceInput = "../textSamples/empty_input_text.txt";
         expectedParsedInput = ["red", "green", "yellow", "blue", "red", "red"];
 
@@ -61,7 +59,7 @@ suite("Test suite for data_structures.js", function() {
         expectedCWF = {"red":{"green":(1/3), "red":(2/3)}, 
             "green":{"yellow":(1/1)}, "yellow":{"blue":(1/1)}, 
             "blue":{"red":(1/1)}};
-
+        //expectedMainString = 
     }); //end setup
 
     teardown(function() {
@@ -98,9 +96,6 @@ suite("Test suite for data_structures.js", function() {
         assert.deepStrictEqual(dsFile.readFile(rgybrrFilePath), 
             expectedParsedInput, "readFile does not return correct array.");
         });
-        
-        
-
 
         test("readFile function with empty input", function() {
             assert.deepStrictEqual(dsFile.readFile(emptyFilePath), 
@@ -163,8 +158,11 @@ suite("Test suite for data_structures.js", function() {
     }); // end condWordFreq unit tests
 
     suite("Unit tests for the main function", function() {
-        test("Does thing", function(){
-            
+        test("Returns correct string with rgybrr", function(){
+            /*
+           assert.deepStrictEqual(dsFile.main(rgybrrFilePath), 
+                expectedMainString, "main function is incorrect");
+           */
         });
     }); // end main unit tests
 

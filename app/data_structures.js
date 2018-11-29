@@ -183,11 +183,10 @@ function readFile(fileNameString){
 /**
 * See program description at top.
 */
-function main(inputArgs){
-    let args = inputArgs;
-    let words = readFile(args[2]);
+function main(inputFile){
+    let words = readFile(inputFile);
     let stringToReturn = "";
-    if(words != 'empty' && args.length == 3){
+    if(words != 'empty'){
 		countMap = wordCount(words);
 		freqMap = wordFreq(countMap, words.length);
 		condCountMap = condWordCount(words);
@@ -209,6 +208,7 @@ function main(inputArgs){
 
 
 if(require.main === module){
-    var args = process.argv;
-    console.log(main(args));
+    // arg2 is the input file
+    var arg2 = process.argv[2];
+    console.log(main(arg2));
 }// end if
