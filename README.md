@@ -1,20 +1,32 @@
 Author: Evert Ball and Tyler Baylson
-Version: v3.0 (November 26, 2018)
+Version: v3.0 (November 29, 2018)
 
 This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
 #USAGE
 
+    Istanbul Code Coverage: To see code coverage, go to:
+    
+    -data_structures.js:
+        https://agora.cs.wcu.edu/~weball1/coverage/data_structures/lcov-report/
+    -make_poem.js:
+        https://agora.cs.wcu.edu/~weball1/coverage/make_poem/lcov-report/
+    
+    Mocha test suites:
+        to run tests use command:
+            
+            data_structures tests:
+                node_modules/.bin/mocha -u tdd qa/tests_data_structures.js
+            make_poem tests:
+                node_modules/.bin/mocha -u tdd qa/tests_make_poem.js
+
     data_structures uses command line arguments to read files.
-    Useage is: node data_structures.js <input_file>
+    Useage is: node dsDriver.js <input_file>
 
     make_poem.js uses command line arguments to make a poem based on some input
     file of words.
-    Usage is: node make_poem.js <input_file> <number_stanzas> <number_lines> 
-    <number_words> <array_of_probabilities> <boolean_display_data_structures>
-    OR
-    npm run <command>
+    Usage is: npm run <command>
         list of commands that may be used:
             rbrbb       - Text file that contains "red blue red blue blue"
             rbbrrg      - Text file that contains "red blue blue red red green"
@@ -44,8 +56,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
 #Known Bugs
     
     -Current known bags:
-
-
+        None
 
     -Bugs that have been squished (i.e. Fixed issues):
       
