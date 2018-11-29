@@ -35,7 +35,7 @@ suite("Test Make Poem", function(){
         words = ["red", "blue", "blue", "red", "red", "green"];
         countMap = data_structures.wordCount(words);
         freqMap = data_structures.wordFreq(countMap, words.length);
-        condWordMap = data_structures.condWordCount(countMap, words);
+        condWordMap = data_structures.condWordCount(words);
         condFreqMap = data_structures.condWordFreq(condWordMap);
         wordData = {"wordCount": countMap, "wordFreqs" : freqMap, 
             "condWordCount": condWordMap, "condWordFreq" : condFreqMap};
@@ -49,10 +49,10 @@ suite("Test Make Poem", function(){
 		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
 
         validInput = poemData;
-        invalidInput = [1, 1, "rbbrrg_input_text.txt", 2, 3, 5];
+        invalidInput = [1, 1, "../textSamples/rbbrrg_input_text.txt", 2, 3, 5];
         emptyInput = poemData;
-        validInput[2] = "rbbrrg_input_text.txt";
-        emptyInput[2] = "empty_input.txt";
+        validInput[2] = "../textSamples/rbbrrg_input_text.txt";
+        emptyInput[2] = "../textSamples/empty_input.text.txt";
     });
 
     // BEFORE EACH
@@ -91,7 +91,7 @@ suite("Test Make Poem", function(){
     suite('Unit tests for the core functionalities of make_poem', function(){
 
         test("Test makePoem", function(){
-         assert(make_poem.makePoem(poemData, wordData) === 
+         assert.deepStrictEqual(make_poem.makePoem(poemData, wordData),
           "\nred blue red \nred green red \n\n\n", 
           "makePoem should return: \nred blue red \nred green red \n\n\n");
         });// End test		
@@ -100,8 +100,8 @@ suite("Test Make Poem", function(){
    // suite('Unit tests for the pickFirstWord function', function(){
 
         test('Test pickFirstWord with data_structures', function(){
-         assert(make_poem.pickFirstWord(0.6, 
-          wordData['wordFreqs']) === "red", 
+         assert.deepStrictEqual(make_poem.pickFirstWord(0.6, 
+          wordData['wordFreqs']),"red", 
           "First word picked should be red.");
         });// End test
    // });// End unitTests pickFirstWord
@@ -109,8 +109,8 @@ suite("Test Make Poem", function(){
    // suite('Unit tests for the pickNextWord function', function(){
 
         test('Test pickNextWord with data_structures', function(){
-         assert(make_poem.pickNextWord(0.2,
-          "red", wordData) == "blue", "picknextword returns: " + 
+         assert.deepStrictEqual(make_poem.pickNextWord(0.2,
+          "red", wordData),"blue", "picknextword returns: " + 
             make_poem.pickNextWord(0.2,"red", wordData));
         });// End test
     });// End unitTests core functionality //pickNextWord
@@ -118,7 +118,7 @@ suite("Test Make Poem", function(){
     suite("Unit tests for the main function", function(){
         
         test("Test main() with valid inputs and displaying data_structures", function(){
-            assert(make_poem.main(validInput) === 
+            assert.deepStrictEqual(make_poem.main(validInput),
             "\nred blue red \nred green red \n\n\n" +
                 "\nwordCount is " + JSON.stringify(wordData['wordCount']) +
                 "\nwordFreq is " + JSON.stringify(wordData['wordFreqs']) +
@@ -128,14 +128,14 @@ suite("Test Make Poem", function(){
         });// End test
 
         test("Test main() with invalid inputs", function(){
-            assert(make_poem.main(invalidInput) === 
+            assert.deepStrictEqual(make_poem.main(invalidInput),
             "\nUsage: nodejs make_poem.js <inputFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>",
             "Program should halt if inputs are invalid");
         });// End test
 
         test("Test main() with an empty file", function(){
-            assert(make_poem.main(emptyInput) === 
-            "\nInput can not be empty of only be whitespace",
+            assert.deepStrictEqual(make_poem.main(emptyInput),
+            "\nInput can not be empty or only be whitespace",
             "Program should halt if the file is empty");
         });// End test
     });// End unitTEsts main
