@@ -167,7 +167,3 @@ function main(inputFile){
 
     return stringToReturn;
 }// end function main
-<<<<<<< HEAD
-
-=======
->>>>>>> eef7b569052f763bd742265ddf6878ec87b11c3e
