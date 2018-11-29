@@ -1,5 +1,8 @@
-/* @author Tyler Baylson
+/* @author Evert Ball and Tyler Baylson
  * @version 10/22/18
+ *
+ * This file is driven by mpDriver.js
+ *
  * Constructs a poem like output for a given input file, desired # of stanzas,
  * desired # of lines per stanze, desired # of words per line, and desired list
  * of probabilities.
@@ -107,10 +110,8 @@ function pickNextWord(probab, currentWord, wordData){
  */
 function main(args){
     let dataStructs = require('./data_structures.js');
-    //let args = process.argv;
     let words = dataStructs.readFile(args[2]);
     let output;
-    console.log("Make_Poem, words & args.length: " + words + " & " + args.length);
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);
@@ -121,7 +122,6 @@ function main(args){
             wordData['condWordCount']);
 
         output = makePoem(args, wordData);
-        //console.log(poem);
         if(JSON.parse(args[7])){
             output += "\nwordCount is " + JSON.stringify(
                 wordData['countMap']);
@@ -142,6 +142,3 @@ function main(args){
     return output;
 }// End main()
 
-if(require.main == module){
-    console.log(main(process.argv));
-}// End if
