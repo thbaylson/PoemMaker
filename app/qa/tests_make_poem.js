@@ -39,7 +39,6 @@ suite("Test Make Poem", function(){
         condFreqMap = data_structures.condWordFreq(condWordMap);
         wordData = {"wordCount": countMap, "wordFreqs" : freqMap, 
             "condWordCount": condWordMap, "condWordFreq" : condFreqMap};
-        //console.log(JSON.stringify(wordData));
 
         // poemData
         stanzas = 1;
@@ -48,12 +47,12 @@ suite("Test Make Poem", function(){
         probabilities = "[0.6,0.2,0.8,0.9,0.4,0.4]";
 		poemData = [0,0,0,stanzas, linesPerStanza, wordsPerLine, probabilities, true];
 
-        validInput = poemData;
-        invalidInput = [1, 1, "textSamples/rbbrrg_input_text.txt", 2, 3, 5];
+        validInput = [1, 1, "textSamples/rbbrrg_input_text.txt", stanzas, linesPerStanza, wordsPerLine, probabilities, true];
+
         emptyInput = poemData;
-        validInput[2] = "textSamples/rbbrrg_input_text.txt";
         emptyInput[2] = "textSamples/empty_input_text.txt";
 
+        invalidInput = [1, 1, "textSamples/rbbrrg_input_text.txt", 2, 3, 5];
     });
 
     // BEFORE EACH

@@ -108,9 +108,9 @@ function pickNextWord(probab, currentWord, wordData){
 function main(args){
     let dataStructs = require('./data_structures.js');
     //let args = process.argv;
-    let words = dataStructs.readFile(args);
+    let words = dataStructs.readFile(args[2]);
     let output;
-    console.log("main(): words: " + words);
+    console.log("Make_Poem, words & args.length: " + words + " & " + args.length);
     if(words != 'empty' && args.length == 8){
         let wordData = {};
         wordData['countMap'] = dataStructs.wordCount(words);

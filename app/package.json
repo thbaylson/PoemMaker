@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rbrbb": "nodejs make_poem.js rbrbb_input_text.txt 1 2 3 [0.6,0.2,0.8,0.9,0.4,0.4] true",
-    "rbbrrg": "nodejs make_poem.js rbbrrg_input_text.txt 1 2 3 [0.6,0.2,0.8,0.9,0.4,0.4] false"
+    "rbbrrg": "nodejs make_poem.js textSamples/rbbrrg_input_text.txt 1 2 3 [0.6,0.2,0.8,0.9,0.4,0.4] false"
   },
   "author": "Tyler Baylson",
   "license": "ISC",

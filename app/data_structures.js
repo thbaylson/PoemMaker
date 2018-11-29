@@ -128,19 +128,12 @@ function sum(obj) {
 * @return {array} [words] An array of all the words in the file.
 */
 function readFile(fileNameString){
-    
     let fs = require('fs');
-    let file;
-    //try{
-        file = fs.readFileSync(fileNameString[2], 'utf-8');
-    //} catch(err) {
-    //    return 'empty';
-    //}
+    let file = fs.readFileSync(fileNameString, 'utf-8');
+    console.log("Data_Structures, file: " + file);
     let reg = /(?:[a-z]+)/g;
-   
     let result = file.match(reg);
-    
-    
+    console.log("Data_Structures, result: " + result);
     return (result != null) ? result : 'empty';
 }// end function readFile
 
