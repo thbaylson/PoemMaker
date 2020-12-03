@@ -9,6 +9,11 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
 # USAGE
+    Data Structure:
+    -node dsDriver.js <textFile>
+    
+    Poem:
+    -node mpDriver.js <textFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>
 
     Istanbul Code Coverage: To see code coverage, go to:
     
