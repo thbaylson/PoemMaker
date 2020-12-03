@@ -4,7 +4,7 @@ Version: v3.0 (November 29, 2018)
 This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
-#USAGE
+# USAGE
 
     Istanbul Code Coverage: To see code coverage, go to:
     
@@ -39,7 +39,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
             BeowulfMore - Beowulf with more!
             BeowulfHalf - Beowulf, but with half the fun.
 
-#Output
+# Output
 
     -The output for data_structures.js is as follows, object is the 
      data structure that is printed:
@@ -53,7 +53,7 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
      of stanzas, lines per stanza, and words per line. Therefore, output is
      different depending on what is input by the user.
 
-#Known Bugs
+# Known Bugs
     
     -Current known bags:
         None
