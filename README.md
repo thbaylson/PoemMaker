@@ -1,5 +1,8 @@
 # Poem Maker
-Author: Evert Ball and Tyler Baylson
+Author: Evert Ball 
+
+Author: Tyler Baylson
+
 Version: v3.0 (November 29, 2018)
 
 This is "Project 3" for Dr. Andrew Scott's CS253 Course
@@ -56,10 +59,10 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 # Known Bugs
     
-    -Current known bags:
+## Current known bugs:
         None
 
-    -Bugs that have been squished (i.e. Fixed issues):
+## Bugs that have been squished (i.e. Fixed issues):
       
       -condWordCount does not correctly count the number of words that follow.
       
