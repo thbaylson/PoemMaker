@@ -9,11 +9,6 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
 
 
 # USAGE
-    Data Structure:
-    -node dsDriver.js <textFile>
-    
-    Poem:
-    -node mpDriver.js <textFile> <stanzas> <linesPerStanza> <wordsPerLine> <probabArray> <displayDSBool>
 
     Istanbul Code Coverage: To see code coverage, go to:
     
@@ -31,11 +26,13 @@ This is "Project 3" for Dr. Andrew Scott's CS253 Course
                 node_modules/.bin/mocha -u tdd qa/tests_make_poem.js
 
     data_structures uses command line arguments to read files.
-    Useage is: node dsDriver.js <input_file>
+    
+    Usage: node dsDriver.js <input_file>
 
     make_poem.js uses command line arguments to make a poem based on some input
     file of words.
-    Usage is: npm run <command>
+    
+    Usage: npm run <command>
         list of commands that may be used:
             rbrbb       - Text file that contains "red blue red blue blue"
             rbbrrg      - Text file that contains "red blue blue red red green"
