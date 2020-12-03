@@ -5,7 +5,7 @@ Author: Tyler Baylson
 
 Version: v3.0 (November 29, 2018)
 
-This is "Project 3" for Dr. Andrew Scott's CS253 Course
+This is "Project 3" for Dr. Andrew Scott's CS-253 Course
 
 
 # USAGE
